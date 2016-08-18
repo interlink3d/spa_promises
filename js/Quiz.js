@@ -1,12 +1,14 @@
+"use strict";
+
 (function(){
   CarLot.populatePage = function (inventory) {
-    var output = document.querySelector('.output')
-    var results = ''
+    var output = document.querySelector('.output');
+    var results = '';
     inventory.forEach(function(car, i){
 
       if (i % 3 === 0){
-        results += `<div class="row">`
-      };
+        results += `<div class="row">`;
+      }
 
         results +=
         `<div class="col-md-3 carCard" style="border-color: ${car.color}">
@@ -17,18 +19,18 @@
            <h5>Color: ${car.color}<h5>
            <h5>Available: ${car.purchased}</h5>
            <p class="descrip"> Description: ${car.description} </p>
-        </div>`
+        </div>`;
 
       if ((i + 1) % 3 === 0){
-        results += `</div>`
+        results += `</div>`;
       }
 
-    })
+    });
 
     output.innerHTML = results;
 
     CarLot.activateEvents();
-  }
+  };
 
   CarLot.loadInventory(CarLot.populatePage);
 
