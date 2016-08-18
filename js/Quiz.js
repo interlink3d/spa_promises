@@ -1,7 +1,10 @@
 "use strict";
 
-(function(){
-  CarLot.populatePage = function (inventory) {
+var createdInv = require('./Carlot');
+var populateToLoad = require('./events');
+
+
+  var populatePage = function (inventory) {
     var output = document.querySelector('.output');
     var results = '';
     inventory.forEach(function(car, i){
@@ -29,10 +32,12 @@
 
     output.innerHTML = results;
 
-    CarLot.activateEvents();
+        populateToLoad();
   };
 
-  CarLot.loadInventory(CarLot.populatePage);
+  createdInv.loadInventory().then(function(stuff){
+    populatePage(stuff);
+  });
 
-})();
+
 

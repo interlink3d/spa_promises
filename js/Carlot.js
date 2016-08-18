@@ -1,25 +1,28 @@
 "use strict";
 
-var CarLot = (function () {
-  var inventory = [];
+var inventToLoad = require('./events');
 
-  return {
-    getInventory: function () {
-      return inventory;
-    },
+var inventory = [];
 
-    loadInventory: function (callback) {
-      return new Promise( function (resolve, reject) {
-      var inventoryLoader = new XMLHttpRequest(); //get data
-      inventoryLoader.open('GET', 'inventory.json');
-      inventoryLoader.send();
 
-      inventoryLoader.addEventListener('load', function () {
-        var data = JSON.parse(this.responseText); //store in private variable
-        callback(inventory);
-        // cb(JSON.parse(evt.target.responseText))  //execute callback
-      });
+var getInventory = function () {
+  return inventory;
+};
+
+var loadInventory = function (callback) {
+    return new Promise( function (resolve, reject) {
+    var inventoryLoader = new XMLHttpRequest(); //get data
+    inventoryLoader.open('GET', 'inventory.json');
+    inventoryLoader.send();
+
+    inventoryLoader.addEventListener('load', function () {
+      var data = JSON.parse(this.responseText).cars; //store in private variable
+      resolve(data);
+      // callback(inventory);
+      // cb(JSON.parse(evt.target.responseText))  //execute callback
     });
-  };
- }
-})();
+  });
+};
+
+
+module.exports = {getInventory, loadInventory};

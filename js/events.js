@@ -1,7 +1,8 @@
 "use strict";
 
-CarLot = (function(carLot) {
-  carLot.activateEvents = function() {
+var cardStyle = require('./styles');
+
+  var activateEvents = function() {
 
     var cards = document.querySelectorAll(".carCard");
 
@@ -10,14 +11,12 @@ CarLot = (function(carLot) {
         var userInput = document.getElementById("userInput");
         userInput.value = "";
         userInput.focus();
-        CarLot.resetCards(cards);
-        CarLot.styleCard(card, "color");
-        CarLot.mirrorText(card, userInput);
+        cardStyle.resetCards(cards);
+        cardStyle.styleCard(card, "color");
+        cardStyle.mirrorText(card, userInput);
       });
     });
 
   };
 
-  return carLot;
-
-})(CarLot);
+module.exports = activateEvents;
