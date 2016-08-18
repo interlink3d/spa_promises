@@ -1,0 +1,18 @@
+header {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  padding-top: 2em;
+}
+
+.carCard {
+  border: 3px solid;
+  margin: .5em;
+  height: 350px;
+  width: 300px;
+}
+
+.color {
+  border: 6px solid;
+  background-color: pink;
+}
